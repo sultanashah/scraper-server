@@ -1,12 +1,11 @@
 # 🕸️ Web Scraper + Flask Server (Multi-Stage Docker App)
 
 This project demonstrates the power of using **Node.js with Puppeteer and Chromium** to scrape data from any webpage, and **Python with Flask** to host that data via a minimal Docker container using a multi-stage build.
-
 ---
 
 ## 🔧 What This Project Does
 
-- 🚀 Scrapes data (title and first <h1>) from any webpage using Puppeteer (Node.js).
+- 🚀 Scrapes data from any webpage using Puppeteer (Node.js).
 - 💻 Serves the scraped JSON data using Flask (Python).
 - 📂 Uses a multi-stage Dockerfile to keep the final image slim.
 - 🚮 Fully containerized and deployed on an AWS EC2 Ubuntu instance.
@@ -148,6 +147,7 @@ docker run -p 5000:5000 scraper-server
 ```
 
 Access: `http://<EC2-PUBLIC-IP>:5000`
+http://3.110.209.166:5000/
 
 ---
 
