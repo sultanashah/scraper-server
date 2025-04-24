@@ -1,3 +1,292 @@
+# 🕸️ Web Scraper + Flask Server (Multi-Stage Docker App)
+
+This project demonstrates a multi-stage Docker setup using **Node.js with Puppeteer and Chromium** to scrape a webpage, and **Python Flask** to serve the scraped content via HTTP. It is designed for clean separation of concerns and minimal runtime overhead.
+
+---
+
+## ✅ Overview
+
+- **Stage 1 (Scraper)**: Node.js script uses Puppeteer to scrape a user-provided URL. It extracts the `<title>` and first `<h1>` and stores them in `scraped_data.json`.
+- **Stage 2 (Server)**: A Python Flask app reads `scraped_data.json` and serves it at `/` as JSON.
+- **Multi-Stage Docker**: Keeps the final container image lightweight by excluding build tools and Puppeteer dependencies.
+
+---
+
+## 📦 Tech Stack
+
+- Node.js 18-slim
+- Puppeteer with Chromium
+- Python 3.10-slim
+- Flask
+- Docker (multi-stage builds)
+- Deployed on AWS EC2 (Ubuntu)
+
+---
+
+## 📁 Project Structure
+
+web-scraper-server/ ├── scrape.js # Node.js scraper script ├── package.json # Node.js dependencies ├── server.py # Flask server script ├── requirements.txt # Python dependencies ├── Dockerfile # Multi-stage build definition
+---
+
+## 🚀 Setup Instructions
+
+### 🖥️ 1. EC2 Setup (Ubuntu)
+
+```bash
+# Update system and install Docker
+sudo apt update
+sudo apt install -y docker.io
+
+# Start and enable Docker
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Add your user to the docker group
+sudo usermod -aG docker $USER
+---
+📁 2. Project Setup
+
+---
+mkdir ~/web-scraper-server
+cd ~/web-scraper-server
+---
+# Create all project files listed above (scrape.js, server.py, etc.)
+🛠️ 3. Build Docker Image
+docker build --build-arg SCRAPE_URL=https://en.wikipedia.org -t scraper-server .
+▶️ 4. Run the Container
+---
+docker run -d -p 5000:5000 scraper-server
+---
+Then open in browser:
+📡 http://<EC2-PUBLIC-IP>:5000/
+
+Example output:
+{
+  "title": "Web scraping - Wikipedia",
+  "heading": "Web scraping"
+}
+🐙 GitHub Repository
+Source Code: https://github.com/sultanashah/scraper-server
+
+✉️ Submission Info
+Completed on: EC2 Ubuntu instance
+
+Dockerized multi-stage application
+
+Fully tested output with Wikipedia page
+
+Ready for immediate deployment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===============================
 ![Screenshot 2025-04-22 034845](https://github.com/user-attachments/assets/092a7256-ae66-43ef-8d81-f7b707f51040)# 🕸️ Web Scraper + Flask Server (Multi-Stage Docker App)
 
 This project demonstrates the power of using **Node.js with Puppeteer and Chromium** to scrape data from any webpage, and **Python with Flask** to host that data via a minimal Docker container using a multi-stage build.
