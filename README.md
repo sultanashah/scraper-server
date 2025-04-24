@@ -32,7 +32,7 @@ web-scraper-server/ ├── scrape.js # Node.js scraper script ├── packa
 
 ### 🖥️ 1. EC2 Setup (Ubuntu)
 
-```bash
+```
 # Update system and install Docker
 sudo apt update
 sudo apt install -y docker.io
@@ -43,19 +43,24 @@ sudo systemctl enable docker
 
 # Add your user to the docker group
 sudo usermod -aG docker $USER
----
-📁 2. Project Setup
+```
 
+📁 2. Project Setup
 ---
+```
 mkdir ~/web-scraper-server
 cd ~/web-scraper-server
+```
 ---
 # Create all project files listed above (scrape.js, server.py, etc.)
 🛠️ 3. Build Docker Image
 docker build --build-arg SCRAPE_URL=https://en.wikipedia.org -t scraper-server .
+
 ▶️ 4. Run the Container
+```
 ---
 docker run -d -p 5000:5000 scraper-server
+```
 ---
 Then open in browser:
 📡 http://<EC2-PUBLIC-IP>:5000/
@@ -65,31 +70,12 @@ Example output:
   "title": "Web scraping - Wikipedia",
   "heading": "Web scraping"
 }
-🐙 GitHub Repository
-Source Code: https://github.com/sultanashah/scraper-server
 
 ✉️ Submission Info
 Completed on: EC2 Ubuntu instance
-
 Dockerized multi-stage application
-
 Fully tested output with Wikipedia page
-
 Ready for immediate deployment
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
